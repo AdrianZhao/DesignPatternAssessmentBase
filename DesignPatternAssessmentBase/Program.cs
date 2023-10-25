@@ -15,6 +15,7 @@
 using DesignPatternAssessmentBase.Models;
 
 Console.WriteLine("Good luck!");
+
 TicketFactory bugReportFactory = new BugReportFactory();
 Ticket bugReport = bugReportFactory.makeTicket("Error Codes");
 TicketFactory requestFactory = new RequestFactory();
@@ -22,9 +23,12 @@ Ticket request = requestFactory.makeTicket(RequestType.Information);
 bugReport.SetAssign(4);
 bugReport.SetResolve(16);
 ModifyHourDecorator bugReportWithModifiers = new TypeBugReport(bugReport);
+bugReportWithModifiers.CalculateTime();
 bugReportWithModifiers = new WhiteGloveClient(bugReportWithModifiers);
 bugReportWithModifiers.CalculateTime();
 request.SetAssign(5);
 request.SetResolve(10);
 ModifyHourDecorator requestWithModifiers = new BacklogReissue(request);
+requestWithModifiers.CalculateTime();
+requestWithModifiers = new WhiteGloveClient(requestWithModifiers);
 requestWithModifiers.CalculateTime();

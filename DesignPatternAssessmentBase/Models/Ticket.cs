@@ -48,8 +48,11 @@ namespace DesignPatternAssessmentBase.Models
         public virtual int Assign {  get; set; }
         public virtual int Resolve { get; set; }
         protected IAssigne _assignBehaviour;
-        protected IResolve _resolveBehaviour;
-        public abstract Ticket GetType(object input);
+        protected IResolve _resolveBehaviour; 
+        public virtual Ticket GetType(object input)
+        {
+            return this;
+        }
         public virtual void SetAssign(int assigned)
         {
             Assign = assigned;
@@ -210,10 +213,6 @@ namespace DesignPatternAssessmentBase.Models
         public ModifyHourDecorator(Ticket ticket)
         {
             Ticket = ticket;
-        }
-        public override Ticket GetType(object input)
-        {
-            throw new NotImplementedException();
         }
     }
     public class TypeBugReport : ModifyHourDecorator
